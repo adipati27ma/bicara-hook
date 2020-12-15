@@ -5,17 +5,19 @@ import Layout from "./Layout";
 function App() {
   const [count, setCount] = useState(0);
   const [user, setUser] = useState({ name: "jhon" });
-  const likeAction = () => setCount(current => current + 1);
-  
+  const likeAction = () => setCount((current) => current + 1);
+
   const heavyProcess = (u) => {
-    // sleep(2000)
+    sleep(2000);
     return u;
-  }
+  };
 
-  const memoizedlikeAction = useCallback(likeAction,[])
-  const userProp = useMemo(()=>heavyProcess(user),[user] )
+  const memoizedlikeAction = useCallback(likeAction, []);
 
-  
+  // kalau tidak pakai useMemo(), func. heavyProcess akan selalu dire-create setiap re-render
+  // dan jadi berat.
+  const userProp = useMemo(() => heavyProcess(user), [user]);
+
   console.log("Parent Component Rendered");
   return (
     <Layout>
@@ -55,7 +57,8 @@ function compare(prevProps, nextProps) {
   return JSON.stringify(prevProps) === JSON.stringify(nextProps);
 }
 
-const MemoizedChildComponent = React.memo(ChildComponent);
+// const MemoizedChildComponent = React.memo(ChildComponent, compare); // solusi 2 utk objek & array
+const MemoizedChildComponent = React.memo(ChildComponent); // menggunakan Pure Func. Component
 
 function sleep(milliseconds) {
   const date = Date.now();

@@ -1,13 +1,8 @@
-import React,{ useContext } from "react";
-import AppContext from './AppContext'
+import React, { useContext } from "react";
+import AppContext from "./AppContext";
 import "./App.css";
 
-const { 
-  LangContext, 
-  LangProvider,
-  ThemeContext,
-  ThemeProvider 
-} = AppContext;
+const { LangContext, LangProvider, ThemeContext, ThemeProvider } = AppContext;
 
 function LangPage() {
   return (
@@ -32,8 +27,8 @@ function Header() {
 
 function Menu() {
   const props = useContext(LangContext);
-  const themeProps = useContext(ThemeContext)
-  console.log('menu render')
+  const themeProps = useContext(ThemeContext);
+  console.log("menu render");
   return (
     <div>
       <ul>
@@ -71,7 +66,7 @@ function Content() {
 function Footer() {
   const props = useContext(LangContext);
   const themeProps = useContext(ThemeContext);
-  console.log("footer render")
+  console.log("footer render");
   return (
     <>
       <i>-- Footer --</i>

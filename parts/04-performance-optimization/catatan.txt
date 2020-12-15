@@ -1,0 +1,20 @@
+Catatan untuk  useCallback() dan useMemo()
+-----------
+
+useCallback(myFunction, []);     // parameter 1: function yg mau dikirim (hanya copy func.)
+                                // parameter 2: dependencies yg kl ada perubahan,
+                                                  func. akan di re-created
+Jadi, saat func. dikirimkan ke "child component" tidak akan ada perubahan..
+      sehingga "child component" tidak akan re-render ketika parent re-render
+ex:
+const memoizedAction = useCallback(likeAction, []);
+
+
+useMemo(() => myFunction(x), [state]);  // parameter 1: function langsung dijalankan tanpa menunggu trigger
+                                                          langsung mengembalikan value yg di "return"
+                                        // parameter 2: dependencies yg kl ada perubahan,
+                                                          func. akan di re-created
+Jadi component yg memiliki proses (func.) berat, prosesnya hanya akan dijalankan 1x saat render awal
+      dan tidak akan dire-create walaupun ada perubahan state/re-render
+ex:
+const userProp = useMemo(() => heavyProcess(user), [user]);

@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import useCounter from './useCounter'
+import React, { useState } from "react";
+import useCounter from "./useCounter";
 // init, read, update
 // share logic
 function SubscribeBox() {
@@ -7,22 +7,21 @@ function SubscribeBox() {
     subscribe: false,
   });
 
-  const [like,handleLike, handleTripleLike ] = useCounter(0)
-  const [dislike,handleDislike] = useCounter(0)
-
+  const [like, handleLike, handleTripleLike] = useCounter(0);
+  const [dislike, handleDislike] = useCounter(0);
 
   const handleSubscribe = () => {
     setState({
       ...state,
-      subscribe: !state.subscribe
-    })
-  }
+      subscribe: !state.subscribe,
+    });
+  };
 
   return (
     <div>
       <p>
-        <button onClick={handleSubscribe}> 
-          {state.subscribe ? "Subscribe" : "Unsubscribe" } 
+        <button onClick={handleSubscribe}>
+          {state.subscribe ? "Subscribe" : "Unsubscribe"}
         </button>
         <span> {JSON.stringify(state.subscribe)} </span>
       </p>
@@ -35,11 +34,11 @@ function SubscribeBox() {
         <span> {dislike} </span>
       </p>
       <p>
-        <button onClick={handleTripleLike}> Triple Like</button>
+        <button onClick={handleTripleLike}> Triple Like </button>
         <span> {like}</span>
       </p>
     </div>
   );
-} 
+}
 
-export default SubscribeBox
+export default SubscribeBox;
